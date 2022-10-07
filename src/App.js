@@ -4,27 +4,24 @@ import ClipBoardButton from './FileSystem/FileSystem';
 import Header from './components/header';
 import Nav from './components/nav';
 import Workbench from './components/workbench';
+import { useState } from 'react';
 
 function App() {
+
+  let [nowTab, setNowTab] = useState(1);
+
   return (
     <div className='content'>
-      <header>
-        <span>초특급 로고</span>
-        <span>아무개</span>
-        <ClipBoardButton index={1} name="item" amount={20} />
-      </header>
-        <nav>
-          <div>네비게이션</div>
-        </nav>
       <Header/>
+      <ClipBoardButton state={Workbench.Workbench.tabs}/>
       <main>
         <Nav/>
         <div className='workbench'>
           <div className='tabs'>
-            <span className='tab-item'>TAB 1</span>
-            <span className='tab-item'>TAB 2</span>
-            <span className='tab-item'>TAB 3</span>
-            <span className='tab-item'>TAB 4</span>
+            <span className='tab-item' onClick={()=>{setNowTab(1);}}>TAB 1</span>
+            <span className='tab-item' onClick={()=>{setNowTab(2);}}>TAB 2</span>
+            <span className='tab-item' onClick={()=>{setNowTab(3);}}>TAB 3</span>
+            <span className='tab-item' onClick={()=>{setNowTab(4);}}>TAB 4</span>
           </div>
           <Workbench/>
         </div>

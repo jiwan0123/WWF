@@ -6,6 +6,7 @@ function ClipBoardButton(props) {
 
     function handleClick(){
       navigator.clipboard.writeText(JSON.stringify(props));
+      console.log(props.state);
       alert("Copied Json !");
     }
 
