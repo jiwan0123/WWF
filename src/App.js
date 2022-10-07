@@ -2,6 +2,7 @@ import './App.css';
 import Block from './components/Block';
 import Header from './components/header';
 import Nav from './components/nav';
+import Workbench from './components/workbench';
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
             <span className='tab-item'>TAB 3</span>
             <span className='tab-item'>TAB 4</span>
           </div>
-          <div>workbench</div>
+          <Workbench/>
         </div>
       </main>
     </div>
