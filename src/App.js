@@ -1,6 +1,9 @@
 import './App.css';
 import Block from './components/Block';
 import ClipBoardButton from './FileSystem/FileSystem';
+import Header from './components/header';
+import Nav from './components/nav';
+import Workbench from './components/workbench';
 
 function App() {
   return (
@@ -10,10 +13,12 @@ function App() {
         <span>아무개</span>
         <ClipBoardButton index={1} name="item" amount={20} />
       </header>
-      <main>
         <nav>
           <div>네비게이션</div>
         </nav>
+      <Header/>
+      <main>
+        <Nav/>
         <div className='workbench'>
           <div className='tabs'>
             <span className='tab-item'>TAB 1</span>
@@ -21,7 +26,7 @@ function App() {
             <span className='tab-item'>TAB 3</span>
             <span className='tab-item'>TAB 4</span>
           </div>
-          <div>workbench</div>
+          <Workbench/>
         </div>
       </main>
     </div>
