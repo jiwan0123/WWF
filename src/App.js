@@ -10,15 +10,7 @@ function App() {
       <Header/>
       <main>
         <Nav/>
-        <div className='workbench'>
-          <div className='tabs'>
-            <span className='tab-item'>TAB 1</span>
-            <span className='tab-item'>TAB 2</span>
-            <span className='tab-item'>TAB 3</span>
-            <span className='tab-item'>TAB 4</span>
-          </div>
-          <Workbench/>
-        </div>
+        <Workbench/>
       </main>
     </div>
   );

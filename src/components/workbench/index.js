@@ -8,7 +8,15 @@ function Workbench() {
 
     return (    
         <div className='workbench'>
-            
+          <div className='tabs'>
+            <span className='tab-item'>TAB 1</span>
+            <span className='tab-item'>TAB 2</span>
+            <span className='tab-item'>TAB 3</span>
+            <span className='tab-item'>TAB 4</span>
+          </div>
+          <div>
+            { workbench.tabs[0].blocks[0] }
+          </div>
         </div>
     );
 }
