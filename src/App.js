@@ -1,17 +1,14 @@
 import './App.css';
 import Block from './components/Block';
+import Header from './components/header';
+import Nav from './components/nav';
 
 function App() {
   return (
     <div className='content'>
-      <header>
-        <span>초특급 로고</span>
-        <span>아무개</span>
-      </header>
+      <Header/>
       <main>
-        <nav>
-          <div>네비게이션</div>        
-        </nav>
+        <Nav/>
         <div className='workbench'>
           <div className='tabs'>
             <span className='tab-item'>TAB 1</span>
