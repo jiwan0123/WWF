@@ -1,12 +1,14 @@
 import { useState } from "react";
 import useWorkbench from "../../hook/useWorkbench";
 
-function Workbench() {
+function Workbench(props) {
     
     const [workbench, setWorkbench] = useWorkbench();        
     //{ workbench.tabs[0].blocks[0] }
 
-    return (    
+    
+
+    return (
         <div className='workbench'>
           <div className='tabs'>
             <span className='tab-item'>TAB 1</span>
