@@ -9,4 +9,7 @@ main {background-color: aqua; display: flex; height: 100%;}
 nav {width: 20%; background-color: blueviolet; border-right: 2px solid #000000;}
 .workbench {width: 80%;}
 .workbench .tabs {display: flex; border-bottom: 2px solid #000000;}
-.workbench .tab-item {margin: 1rem; border: 1px solid #000000; padding: 0.4rem 0.7rem; font-weight: 500; border-radius: 1px;}
+
+.workbench .tab-item {
+    margin: 1rem; border: 1px solid #000000; padding: 0.4rem 0.7rem; font-weight: 500; border-radius: 1px;
+}

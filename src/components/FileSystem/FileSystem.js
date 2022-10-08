@@ -4,9 +4,9 @@ function ClipBoardButton(props) {
 
     let [blockState, setBlockState] = useState({});
 
-    function handleClick(){
+    const handleClick = () => {
       navigator.clipboard.writeText(JSON.stringify(props));
-      console.log(props.state);
+      console.log(props);
       alert("Copied Json !");
     }
 
