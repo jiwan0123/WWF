@@ -7,17 +7,6 @@ import { useState } from 'react';
 
 function App() {
 
-  const getJson = (element) => {
-    //navigator.clipboard.writeText(JSON.stringify(element));
-    try {
-      console.log(element);
-      alert(element);
-    }
-    catch (error) {
-      alert(error);
-    }
-  }
-
   const [blockState , setBlockState] = useState({});
 
   return (
@@ -26,7 +15,7 @@ function App() {
       
       <main>
         <Nav/>
-        <Workbench getJson = {getJson} setBlockState = {setBlockState}/>
+        <Workbench setBlockState = {setBlockState}/>
       </main>
     </div>
   );
