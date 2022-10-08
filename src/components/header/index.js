@@ -5,14 +5,19 @@ function Header(props) {
             <span>초특급 로고</span>
             <span> 아무개 </span>
             <button onClick={()=>{
-                console.log(props.blockState);
-                alert('copied Json! (test)');
-
-                /*
-                navigator.clipboard.writeText(JSON.stringify(props.blockState));
-                
-                alert("Copied Json !");
-                */
+                try{
+                    
+                    let tempState = Object.assign({}, props.blockState);
+                    let tempJson = {};
+                    tempState.foreEach((value, index) => tempJson[index] = value);
+                    
+                    console.log(tempJson);
+                    navigator.clipboard.writeText(JSON.stringify());
+                    alert('copied Json! (test)');
+                    
+                } catch (err){
+                    console.log(err);
+                }
             }}>get json</button>
         </header>
     );

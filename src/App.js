@@ -7,7 +7,7 @@ import { useState } from 'react';
 
 function App() {
 
-  const [blockState , setBlockState] = useState({});
+  const [blockState , setBlockState] = useState();
 
   return (
     <div className='content'>

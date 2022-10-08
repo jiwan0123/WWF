@@ -16,14 +16,43 @@ function Workbench(props) {
     return (
         <div className='workbench'>
           
-          <div className='tabs'>
-            <span className='tab-item' onClick={()=>{console.log("TAB1 clicked!")}}>TAB 1</span>
-            <span className='tab-item' onClick={()=>{console.log("TAB2 clicked!")}}>TAB 2</span>
-            <span className='tab-item' onClick={()=>{console.log("TAB3 clicked!")}}>TAB 3</span>
-            <span className='tab-item' onClick={()=>{console.log("TAB4 clicked!")}}>TAB 4</span>
+          <div className='tabs'> 
+            <span className='tab-item' isselected="true" onClick={(e)=>{
+              let x = document.getElementsByClassName('tab-item');
+              for(let i=0; i < x.length; i++){
+                x[i].setAttribute('isselected', 'false');
+              }
+              e.currentTarget.setAttribute('isselected', "true");
+              setCurrentTab(1);
+          }}>TAB 1</span>
+            <span className='tab-item' isselected="false" onClick={(e)=>{
+              let x = document.getElementsByClassName('tab-item');
+              for(let i=0; i < x.length; i++){
+                x[i].setAttribute('isselected', 'false');
+              }
+              e.currentTarget.setAttribute('isselected', "true");
+              setCurrentTab(2);
+          }}>TAB 2</span>
+            <span className='tab-item' isselected="false" onClick={(e)=>{
+              let x = document.getElementsByClassName('tab-item');
+              for(let i=0; i < x.length; i++){
+                x[i].setAttribute('isselected', 'false');
+              }
+              e.currentTarget.setAttribute('isselected', "true");
+              setCurrentTab(3);
+          }}>TAB 3</span>
+            <span className='tab-item' isselected="false" onClick={(e)=>{
+              let x = document.getElementsByClassName('tab-item');
+              for(let i=0; i < x.length; i++){
+                x[i].setAttribute('isselected', 'false');
+              }
+              e.currentTarget.setAttribute('isselected', "true");
+              setCurrentTab(4);
+          }}>TAB 4</span>
+            
           </div>
           <div className="workbench-body">
-            { workbench.tabs[currentTab-1].blocks[0] /*TAB은 1부터 시작이라 인덱스에 -1 했습니다*/}
+            { !workbench.tabs[currentTab-1]?.blocks[0]?"contents not exist":workbench.tabs[currentTab-1].blocks[0] /*TAB은 1부터 시작이라 인덱스에 -1 했습니다*/}
           </div>
         </div>
     );
