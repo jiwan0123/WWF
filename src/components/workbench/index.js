@@ -3,14 +3,22 @@ import useWorkbench from "../../hook/useWorkbench";
 
 function Workbench(props) {
     
-    const [workbench, setWorkbench] = useWorkbench();        
+    const [workbench, setWorkbench] = useWorkbench(addBlock);        
     //{ workbench.tabs[0].blocks[0] }
 
     useEffect(()=>{
       let temp = Object.assign(workbench); //workbench의 내용이 바뀔 때마다 workbench의 내용을 blockstate에 저장합니다.
       props.setBlockState(temp);
     })
-    
+
+    let [currentTab, setCurrentTab] = useState(1);
+    console.log(workbench);
+
+    function addBlock(object) {
+      let temp = Object.assign({}, workbench);      
+      temp.tabs[currentTab-1].blocks[0] = [...workbench.tabs[currentTab-1].blocks[0], object];      
+      setWorkbench(temp);
+    }
     return (
         <div className='workbench'>
           <div className='tabs'> 
