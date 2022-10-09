@@ -1,20 +1,11 @@
 import { useState } from 'react'
-import Block from '../components/Block'
+import { Start } from '../components/Block'
 
-function useWorkbench() {
+function useWorkbench(addBlock) {
   const [workbench, setWorkbench] = useState({
     tabs: [
       {
-        blocks: [[<Block.Start />]],
-      },
-      {
-        blocks: [[<Block.Start />]],
-      },
-      {
-        blocks: [[<Block.Start />]],
-      },
-      {
-        blocks: [[<Block.Start />]],
+        blocks: [[<Start addBlock={addBlock} />]],
       },
     ],
   })
