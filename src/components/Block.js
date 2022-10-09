@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 function Block(props) {
-    let cn = `block-${props.type}`    
+    let cn = `block-${props.type}`
     return(
         <div 
             className={cn}
