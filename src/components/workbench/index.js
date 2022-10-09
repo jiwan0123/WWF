@@ -47,11 +47,35 @@ function Workbench(props) {
               props.setCurrentTab(4);
           }}>TAB 4</span>
           </div>
-          <div className="workbench-body">  {/*TAB은 1부터 시작이라 인덱스에 -1 했습니다 tabs요소가 있다면 출력, 없다면 'contents not exist 를 출력합니다.*/}
-            { !workbench.tabs[props.currentTab-1]?.blocks[0]?"contents not exist":workbench.tabs[props.currentTab-1].blocks[0]}
+
+          <div className="workbench-body">            
+            <Border border={workbench.tabs[currentTab-1]}/>
+
           </div>
         </div>
     );
+}
+
+function Border(props) {
+  const { border } = props;
+  console.log(border);
+
+  function Print() {
+    const stack = new Array();
+    for(let obj of border.blocks) {
+      for(let block of obj) {
+        stack.push(block);
+      }
+      stack.push(<hr/>);
+    }
+    return stack;
+  }
+
+  return(
+    <>
+      <Print/>
+    </>
+  );
 }
 
 export default Workbench;

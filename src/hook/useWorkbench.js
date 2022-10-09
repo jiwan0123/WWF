@@ -9,6 +9,7 @@ function useWorkbench() {
                 blocks : [
                     <Block.Start/>,
                     <Block.End/>
+
                 ]
             }
         ]
