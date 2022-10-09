@@ -12,7 +12,6 @@ function App() {
   return (
     <div className='content'>
       <Header blockState = {blockState}/>
-      
       <main>
         <Nav/>
         <Workbench setBlockState = {setBlockState}/>
