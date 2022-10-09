@@ -1,11 +1,16 @@
-import { useState } from 'react'
-import useWorkbench from '../../hook/useWorkbench'
 import { useEffect, useState } from 'react'
 import useWorkbench from '../../hook/useWorkbench'
 
 function Workbench(props) {
   const [workbench, setWorkbench] = useWorkbench()
   //{ workbench.tabs[0].blocks[0] }
+
+  useEffect(() => {
+    let temp = Object.assign(workbench)
+    props.setBlockState(temp)
+  })
+
+  let [currentTab, setCurrentTab] = useState(1)
 
   return (
     <div className="workbench">
@@ -68,14 +73,31 @@ function Workbench(props) {
         </span>
       </div>
       <div className="workbench-body">
-        {
-          !workbench.tabs[currentTab - 1]?.blocks[0]
-            ? 'contents not exist'
-            : workbench.tabs[currentTab - 1]
-                .blocks[0] /*TAB은 1부터 시작이라 인덱스에 -1 했습니다*/
-        }
+        <Border border={workbench.tabs[currentTab - 1]} />
       </div>
     </div>
+  )
+}
+
+function Border(props) {
+  const { border } = props
+  console.log(border)
+
+  function Print() {
+    const stack = new Array()
+    for (let obj of border.blocks) {
+      for (let block of obj) {
+        stack.push(block)
+      }
+      stack.push(<hr />)
+    }
+    return stack
+  }
+
+  return (
+    <>
+      <Print />
+    </>
   )
 }
 
