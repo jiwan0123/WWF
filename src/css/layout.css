@@ -22,9 +22,7 @@ nav {width: 15%; background-color: rgb(223, 223, 223); border-right: 2px solid #
     padding: 1rem;
 }
 
-
-
-.workbench .tab-item , .workbench .tabs .addTab{
+.workbench .tab-item {
     margin: 1rem .2rem 0 1rem;
     border-top: 1px solid #000000;
     border-left: 1px solid #000000;

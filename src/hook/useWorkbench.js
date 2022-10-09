@@ -3,13 +3,12 @@ import Block from "../components/Block";
 
 function useWorkbench() {
 
-    
-
     const [workbench, setWorkbench] = useState({
         tabs : [
             {
                 blocks : [
-                    <Block.Start/>
+                    <Block.Start/>,
+                    <Block.End/>
                 ]
             }
         ]
