@@ -11,49 +11,37 @@ function Workbench(props) {
       props.setBlockState(temp);
     })
 
-    let [currentTab, setCurrentTab] = useState(1);
-    console.log(workbench);
+    let [currentTab, setCurrentTab] = useState(1);    
 
     function addBlock(object) {
       let temp = Object.assign({}, workbench);      
       temp.tabs[currentTab-1].blocks[0] = [...workbench.tabs[currentTab-1].blocks[0], object];      
       setWorkbench(temp);
     }
+
+    function addTabs() {      
+      let temp = Object.assign({}, workbench);
+      let temp_taps = [...temp.tabs, temp.tabs[0]];
+      temp.tabs = temp_taps;
+      setWorkbench(temp);      
+    }
     return (
         <div className='workbench'>
           <div className='tabs'> 
-            <span className='tab-item' isselected="true" onClick={(e)=>{
-              let x = document.getElementsByClassName('tab-item'); //className 'tab-item' 모두를 받아 isselected 를 'false'로 한 후, 선택한 탭을 'true'로 해줍니다. 
-              for(let i=0; i < x.length; i++){                     //isselected 속성에 따라 layout.css 에서 처리합니다. 'isselected'는 선택된 탭을 의미합니다
-                x[i].setAttribute('isselected', 'false');
-              }
-              e.currentTarget.setAttribute('isselected', "true");
-              props.setCurrentTab(1);
-          }}>TAB 1</span>
-            <span className='tab-item' isselected="false" onClick={(e)=>{
-              let x = document.getElementsByClassName('tab-item');
-              for(let i=0; i < x.length; i++){
-                x[i].setAttribute('isselected', 'false');
-              }
-              e.currentTarget.setAttribute('isselected', "true");
-              props.setCurrentTab(2);
-          }}>TAB 2</span>
-            <span className='tab-item' isselected="false" onClick={(e)=>{
-              let x = document.getElementsByClassName('tab-item');
-              for(let i=0; i < x.length; i++){
-                x[i].setAttribute('isselected', 'false');
-              }
-              e.currentTarget.setAttribute('isselected', "true");
-              props.setCurrentTab(3);
-          }}>TAB 3</span>
-            <span className='tab-item' isselected="false" onClick={(e)=>{
-              let x = document.getElementsByClassName('tab-item');
-              for(let i=0; i < x.length; i++){
-                x[i].setAttribute('isselected', 'false');
-              }
-              e.currentTarget.setAttribute('isselected', "true");
-              props.setCurrentTab(4);
-          }}>TAB 4</span>
+          { workbench.tabs.map((obj, index) => {
+            return(
+              <span className='tab-item' isselected="true" onClick={(e)=>{
+                let x = document.getElementsByClassName('tab-item'); //className 'tab-item' 모두를 받아 isselected 를 'false'로 한 후, 선택한 탭을 'true'로 해줍니다. 
+                for(let i=0; i < x.length; i++){                     //isselected 속성에 따라 layout.css 에서 처리합니다. 'isselected'는 선택된 탭을 의미합니다
+                  x[i].setAttribute('isselected', 'false');
+                }
+                e.currentTarget.setAttribute('isselected', "true");
+                props.setCurrentTab(index+1);
+              }}>TAB {index+1}</span>
+            )
+          })}
+
+          <button onClick={()=>{addTabs()}}>추가하기</button>
           </div>
           <div className="workbench-body">            
             <Border border={workbench.tabs[props.currentTab-1]}/>
@@ -64,7 +52,6 @@ function Workbench(props) {
 
 function Border(props) {
   const { border } = props;
-  console.log(border);
 
   function Print() {
     const stack = new Array();
