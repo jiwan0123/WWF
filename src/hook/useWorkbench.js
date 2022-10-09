@@ -9,7 +9,7 @@ function useWorkbench() {
         tabs : [
             {
                 blocks : [
-                    <Block.Start/>
+                    [<Block.Start/>],
                 ]
             }
         ]
