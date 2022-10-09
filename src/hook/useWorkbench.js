@@ -1,20 +1,24 @@
-import { useState } from "react";
-import Block from "../components/Block";
+import { useState } from 'react'
+import Block from '../components/Block'
 
 function useWorkbench() {
+  const [workbench, setWorkbench] = useState({
+    tabs: [
+      {
+        blocks: [[<Block.Start />]],
+      },
+      {
+        blocks: [[<Block.Start />]],
+      },
+      {
+        blocks: [[<Block.Start />]],
+      },
+      {
+        blocks: [[<Block.Start />]],
+      },
+    ],
+  })
 
-    
-
-    const [workbench, setWorkbench] = useState({
-        tabs : [
-            {
-                blocks : [
-                    [<Block.Start/>],
-                ]
-            }
-        ]
-    });
-
-    return [workbench, setWorkbench];
+  return [workbench, setWorkbench]
 }
-export default useWorkbench;
+export default useWorkbench

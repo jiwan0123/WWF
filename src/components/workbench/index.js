@@ -80,11 +80,7 @@ function Workbench(props) {
 }
 
 function Border(props) {
-<<<<<<< HEAD
   const { border } = props
-=======
-  const { border } = props;
->>>>>>> 3de10cf965f7ff3c0a91ba847b8750f5c2a7f650
 
   function Print() {
     const stack = new Array()
