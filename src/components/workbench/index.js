@@ -3,7 +3,7 @@ import useWorkbench from "../../hook/useWorkbench";
 
 function Workbench(props) {
     
-    const [workbench, setWorkbench] = useWorkbench();        
+    const [workbench, setWorkbench] = useWorkbench(addBlock);        
     //{ workbench.tabs[0].blocks[0] }
 
     useEffect(()=>{
@@ -12,6 +12,13 @@ function Workbench(props) {
     })
 
     let [currentTab, setCurrentTab] = useState(1);
+    console.log(workbench);
+
+    function addBlock(object) {
+      let temp = Object.assign({}, workbench);      
+      temp.tabs[currentTab-1].blocks[0] = [...workbench.tabs[currentTab-1].blocks[0], object];      
+      setWorkbench(temp);
+    }
 
     return (
         <div className='workbench'>
