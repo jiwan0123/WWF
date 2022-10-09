@@ -57,7 +57,6 @@ function Workbench(props) {
 
 function Border(props) {
   const { border } = props;
-  console.log(border);
 
   function Print() {
     const stack = new Array();
