@@ -49,8 +49,7 @@ function Workbench(props) {
           </div>
 
           <div className="workbench-body">            
-            <Border border={workbench.tabs[currentTab-1]}/>
-
+            <Border border={workbench.tabs[props.currentTab - 1]}/>
           </div>
         </div>
     );
