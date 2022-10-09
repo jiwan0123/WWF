@@ -1,3 +1,10 @@
+function BaseComponent(props) {
+    return(
+        <div className={``}>
+            {props.content}
+        </div>
+    );
+}
 export default {
     Assignment : function() {
         return(
