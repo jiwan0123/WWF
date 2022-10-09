@@ -1,12 +1,41 @@
 /* 레이아웃만 잡는 CSS */
 html {height: 100%;}
 body {height: 100%; font-family:'Malgun Gothic';}
-#root {height: 100%;}
+#root {
+    height: 100%;
+    --main-worckbench-color: #FFFFFF;
+    --unseleted-tab-color: rgb(240, 240, 240);
+}
 
 .content {display: flex; height: 100%; flex-direction: column;}
-header {background-color: brown;}
-main {background-color: aqua; display: flex; height: 100%;}
-nav {width: 20%; background-color: blueviolet; border-right: 2px solid #000000;}
+
+header {background-color: brown; padding: .3rem;}
+
+main {background-color: var(--main-worckbench-color); display: flex; height: 100%;}
+
+nav {width: 15%; background-color: rgb(223, 223, 223); border-right: 2px solid #000000;padding: 1rem;}
+
 .workbench {width: 80%;}
-.workbench .tabs {display: flex; border-bottom: 2px solid #000000;}
-.workbench .tab-item {margin: 1rem; border: 1px solid #000000; padding: 0.4rem 0.7rem; font-weight: 500; border-radius: 1px;}
+.workbench .tabs {display: flex; border-bottom: 1px solid #000000;}
+
+.workbench-body{
+    padding: 1rem;
+}
+
+.workbench .tab-item {
+    margin: 1rem 1rem 0 1rem;
+    border-top: 1px solid #000000;
+    border-left: 1px solid #000000;
+    border-right: 1px solid #000000;
+    padding: 0.4rem 0.7rem;
+    font-weight: 500;
+    border-radius: 1px;
+    cursor:pointer;
+}
+.workbench .tab-item[isSeleted="true"]{
+    background-color:var(--main-worckbench-color);
+}
+.workbench .tab-item[isSelected="false"]{
+    background-color:var(--unseleted-tab-color);
+    box-shadow:inset 0 -3px 3px #aaa;
+}
