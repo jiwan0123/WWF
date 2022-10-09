@@ -8,14 +8,14 @@ import { useState } from 'react';
 function App() {
 
   const [blockState , setBlockState] = useState();
+  let [currentTab, setCurrentTab] = useState(1);
 
   return (
     <div className='content'>
-      <Header blockState = {blockState}/>
-      
+      <Header blockState = {blockState} currentTab={currentTab}/>
       <main>
         <Nav/>
-        <Workbench setBlockState = {setBlockState}/>
+        <Workbench setBlockState = {setBlockState} currentTab={currentTab} setCurrentTab={setCurrentTab}/>
       </main>
     </div>
   );
