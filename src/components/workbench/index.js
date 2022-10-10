@@ -3,7 +3,7 @@ import useWorkbench from "../../hook/useWorkbench";
 
 function Workbench(props) {
     
-    const [workbench, setWorkbench] = useWorkbench(addBlock);        
+    const [workbench, setWorkbench] = useWorkbench(addBlock);
     //{ workbench.tabs[0].blocks[0] }
 
     useEffect(()=>{
@@ -13,13 +13,19 @@ function Workbench(props) {
 
     let [currentTab, setCurrentTab] = useState(1);    
 
+    /**
+     * 블럭을 더해주는 함수     
+     */
     function addBlock(object) {
       let temp = Object.assign({}, workbench);      
       temp.tabs[currentTab-1].blocks[0] = [...workbench.tabs[currentTab-1].blocks[0], object];      
       setWorkbench(temp);
     }
 
-    function addTabs() {      
+    /**
+     * 탭을 더해주는 함수
+     */
+    function addTabs() { 
       let temp = Object.assign({}, workbench);
       let temp_taps = [...temp.tabs, temp.tabs[0]];
       temp.tabs = temp_taps;
@@ -50,10 +56,13 @@ function Workbench(props) {
     );
 }
 
+/**
+ * 워크 밴치에서 실질적으로 순서도가 출력되는 컴포넌트 
+ */
 function Border(props) {
   const { border } = props;
 
-  function Print() {
+  function Print() { // border 객체 안의 모든 Block 컴포넌트를 출력하는 함수
     const stack = new Array();
     for(let obj of border.blocks) {
       for(let block of obj) {
