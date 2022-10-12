@@ -10,7 +10,7 @@ function Header(props) {
                     //let tempJson = {...tempState.tabs[props.currentTab - 1]?.blocks[0]};
                     let tempJson = {Blocks:[]};
                     for(let i=0;i < tempState.tabs[props.currentTab - 1].blocks.length; i++){
-                        tempJson.Blocks[i] = tempState.tabs[props.currentTab - 1].blocks[i].type.name;
+                        tempJson.Blocks[i] = tempState.tabs[props.currentTab - 1].block[i].type.name;
                     }
                     console.log(tempJson);
                     navigator.clipboard.writeText(JSON.stringify(tempJson));
