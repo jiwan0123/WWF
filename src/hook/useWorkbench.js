@@ -2,20 +2,10 @@ import { useState } from "react";
 import {Assignment, Start} from "../components/Block";
 
 
-function block() { //사용안하는 함수 참고용
+function getblock(element) { //사용안하는 함수 참고용
     const block = {
-        data     : <Start/>,
-        child    : [
-            {
-                data     : <Assignment/>,
-                child    : [],
-                parent   : null,
-                marked   : false,
-                addBlock : function(block) {
-                    this.child.push(block);
-                }
-            }
-        ],
+        data     : element,
+        child    : [],
         parent   : null,
         marked   : false, //방문을 했느냐 안했느냐 # 전체 탐색할때만 필요
         addBlock : function(block) {

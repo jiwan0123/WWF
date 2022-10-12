@@ -62,29 +62,39 @@ function Workbench(props) {
  */
 function Container(props) {
   const { container } = props;
+  const [loding, setLoding] = useState(false);
+  useEffect(()=>{
+    setLoding(true);
+  });  
 
-  function Print() { // border 객체 안의 모든 Block 컴포넌트를 출력하는 함수  
+  /**
+   *  1. 번문제 어째서인지 Print함수가 2번호출됨
+   *  2. 도 어째서인지 2번째 호출됬을때 1번 호출됬을때의 값을 가지고있음 
+   */
+  function Print() { // border 객체 안의 모든 Block 컴포넌트를 출력하는 함수  ### 무튼 문제있는 함수니까 고쳐야함 -***************
 
     const stack = new Array();   
     const result = new Array(); // [<Start/>,<Assignment/>]
-    let target = container.block;    
+    const target = Object.assign({}, container.block);     
+    // const target = container.block;
+    target.marked = true;
     stack.push(target);
     while(stack.length > 0) {
-      let target_block = stack.pop();      
-      for(const child of target_block.child) {
-        if(child.marked === false) {          
+      const target_block = stack.pop();      
+      for(let child of target_block.child) {
+        if(child.marked === false) {
           child.marked = true;
           stack.push(child);
         }
       }
       result.push(target_block.data);
-    }        
+    }
     return result;
   }
 
   return(
-    <>
-      <Print/>
+    <>      
+      {loding == true ? <Print/> : ""}
     </>
   );
 }
