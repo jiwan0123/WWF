@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import useWorkbench from "../../hook/useWorkbench";
+import { Assignment, Start } from "../Block";
 
 function Workbench(props) {
     
@@ -50,7 +51,7 @@ function Workbench(props) {
           <button onClick={()=>{addTabs()}}>추가하기</button>
           </div>
           <div className="workbench-body">            
-            <Border border={workbench.tabs[props.currentTab-1]}/>
+            <Container container={workbench.tabs[props.currentTab-1]}/>
           </div>
         </div>
     );
@@ -59,18 +60,26 @@ function Workbench(props) {
 /**
  * 워크 밴치에서 실질적으로 순서도가 출력되는 컴포넌트 
  */
-function Border(props) {
-  const { border } = props;
+function Container(props) {
+  const { container } = props;
 
-  function Print() { // border 객체 안의 모든 Block 컴포넌트를 출력하는 함수
-    const stack = new Array();
-    for(let obj of border.blocks) {
-      for(let block of obj) {
-        stack.push(block);
+  function Print() { // border 객체 안의 모든 Block 컴포넌트를 출력하는 함수  
+
+    const stack = new Array();   
+    const result = new Array(); // [<Start/>,<Assignment/>]
+    let target = container.block;    
+    stack.push(target);
+    while(stack.length > 0) {
+      let target_block = stack.pop();      
+      for(const child of target_block.child) {
+        if(child.marked === false) {          
+          child.marked = true;
+          stack.push(child);
+        }
       }
-      stack.push(<hr/>);
-    }
-    return stack;
+      result.push(target_block.data);
+    }        
+    return result;
   }
 
   return(
