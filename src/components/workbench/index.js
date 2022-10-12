@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import useWorkbench from "../../hook/useWorkbench";
+import { Assignment, Start } from "../Block";
 
 function Workbench(props) {
     
-    const [workbench, setWorkbench] = useWorkbench(addBlock);        
+    const [workbench, setWorkbench] = useWorkbench(addBlock);
     //{ workbench.tabs[0].blocks[0] }
 
     useEffect(()=>{
@@ -13,13 +14,19 @@ function Workbench(props) {
 
     let [currentTab, setCurrentTab] = useState(1);    
 
+    /**
+     * 블럭을 더해주는 함수     
+     */
     function addBlock(object) {
       let temp = Object.assign({}, workbench);      
       temp.tabs[currentTab-1].blocks[0] = [...workbench.tabs[currentTab-1].blocks[0], object];      
       setWorkbench(temp);
     }
 
-    function addTabs() {      
+    /**
+     * 탭을 더해주는 함수
+     */
+    function addTabs() { 
       let temp = Object.assign({}, workbench);
       let temp_taps = [...temp.tabs, temp.tabs[0]];
       temp.tabs = temp_taps;
@@ -44,29 +51,50 @@ function Workbench(props) {
           <button onClick={()=>{addTabs()}}>추가하기</button>
           </div>
           <div className="workbench-body">            
-            <Border border={workbench.tabs[props.currentTab-1]}/>
+            <Container container={workbench.tabs[props.currentTab-1]}/>
           </div>
         </div>
     );
 }
 
-function Border(props) {
-  const { border } = props;
+/**
+ * 워크 밴치에서 실질적으로 순서도가 출력되는 컴포넌트 
+ */
+function Container(props) {
+  const { container } = props;
+  const [loding, setLoding] = useState(false);
+  useEffect(()=>{
+    setLoding(true);
+  });  
 
-  function Print() {
-    const stack = new Array();
-    for(let obj of border.blocks) {
-      for(let block of obj) {
-        stack.push(block);
+  /**
+   *  1. 번문제 어째서인지 Print함수가 2번호출됨
+   *  2. 도 어째서인지 2번째 호출됬을때 1번 호출됬을때의 값을 가지고있음 
+   */
+  function Print() { // border 객체 안의 모든 Block 컴포넌트를 출력하는 함수  ### 무튼 문제있는 함수니까 고쳐야함 -***************
+
+    const stack = new Array();   
+    const result = new Array(); // [<Start/>,<Assignment/>]
+    const target = Object.assign({}, container.block);     
+    // const target = container.block;
+    target.marked = true;
+    stack.push(target);
+    while(stack.length > 0) {
+      const target_block = stack.pop();      
+      for(let child of target_block.child) {
+        if(child.marked === false) {
+          child.marked = true;
+          stack.push(child);
+        }
       }
-      stack.push(<hr/>);
+      result.push(target_block.data);
     }
-    return stack;
+    return result;
   }
 
   return(
-    <>
-      <Print/>
+    <>      
+      {loding == true ? <Print/> : ""}
     </>
   );
 }
