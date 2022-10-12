@@ -7,25 +7,33 @@ import { useState } from "react";
  */
 function Block(props) {    
     let cn = `block-${props.type}` // 클레스네임 별의미는 없음
+    let [child, setChild] = useState([]);
+    let parent = props.parent;
+    let marked = props.marked;
+
     const [mouseIn, setMouseIn] = useState(0); // 마우스가 들어왔는지 여부 변수
-    return(
+    return([
         <div 
             className={cn} 
             onMouseOver={()=>{setMouseIn(1)}}
             onMouseOut={()=>{setMouseIn(0)}}
         >
-            <span>{props.content}</span>            
-            { mouseIn == 1 ? <button onClick={function(){props.addBlock(<Assignment/>)}}>asdf</button> : ""}
+            <span>{props.content} </span>            
+            { mouseIn == 1 ? <button onClick={(e)=>{
+                let temp = <Assignment child={[]} parent={[]} marked={false} />;
+                setChild(temp);
+            }}> 추가하기 </button> : ""}
         </div>
+        , child]
     );
 }
 
 /**
  * 변수를 선언할때 컴포넌트
  */
-function Assignment() {
+function Assignment(props) {
     return(
-        <Block content="네모이다" type="assignment"/>
+        <Block content="Assignment" type="assignment" addBlock={props.addBlock}/>
     );
 }
 

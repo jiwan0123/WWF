@@ -6,13 +6,6 @@ function Workbench(props) {
   const [workbench, setWorkbench] = useWorkbench(addBlock);
   //{ workbench.tabs[0].blocks[0] }
 
-  useEffect(() => {
-    let temp = Object.assign(workbench); //workbench의 내용이 바뀔 때마다 workbench의 내용을 blockstate에 저장합니다.
-    props.setBlockState(temp);
-  });
-
-
-    
   useEffect(()=>{
     let temp = Object.assign(workbench); //workbench의 내용이 바뀔 때마다 workbench의 내용을 blockstate에 저장합니다.
     props.setBlockState(temp);
@@ -23,9 +16,8 @@ function Workbench(props) {
     /**
      * 블럭을 더해주는 함수     
      */
-    function addBlock(operator, object) {
-      let oper = operator;     
-      
+    function addBlock(oper) {
+
     }
 
     /**
@@ -52,7 +44,8 @@ function Workbench(props) {
                 props.setCurrentTab(index+1);
               }}>TAB {index+1}</span>
             )
-          })}
+          }) 
+          }
 
           <button onClick={()=>{addTabs()}}>추가하기</button>
           </div>
@@ -66,33 +59,51 @@ function Workbench(props) {
 /**
  * 워크 밴치에서 실질적으로 순서도가 출력되는 컴포넌트 
  */
+
 function Container(props) {
   const { container } = props;
+  const [loding, setLoding] = useState(false);
+  useEffect(()=>{
+    setLoding(true);
+  });  
 
-  function Print() { // border 객체 안의 모든 Block 컴포넌트를 출력하는 함수  
-
+  /**
+   *  1. 번문제 어째서인지 Print함수가 2번호출됨
+   *  2. 도 어째서인지 2번째 호출됬을때 1번 호출됬을때의 값을 가지고있음 
+   */
+  function Print() { // border 객체 안의 모든 Block 컴포넌트를 출력하는 함수  ### 무튼 문제있는 함수니까 고쳐야함 -***************
+    /*
     const stack = new Array();   
     const result = new Array(); // [<Start/>,<Assignment/>]
-    let target = Object.assign({}, container.block);    
+    const target = Object.assign({}, container.block);     
+    // const target = container.block;
+    target.marked = true;
+
     stack.push(target);
     
     while(stack.length > 0) {
-      let target_block = stack.pop();      
-      for(const child of target_block.child) {
-        if(child.marked === false) {          
+      const target_block = stack.pop();      
+      for(let child of target_block.child) {
+        if(child.marked === false) {
           child.marked = true;
           stack.push(child);
         }
       }
       result.push(target_block.data);
-    }        
-
-    //console.log(container.block.data.type.name);
-    return result;
+    }
+    */
+    
+    //return result;
+    let temp = Object.assign([], props.container.block[0]);
+    return temp;
   }
 
-  return (
-    <>
+  return(
+    <>      
+      {/*loding == true ? <Print/> : ""*/}
+      <button onClick={()=>{
+        console.log(props.container.block[0]);
+      }}>확인</button>
       <Print />
     </>
   );
