@@ -6,7 +6,7 @@ function useWorkbench(addBlock) {
         tabs : [
             {
                 blocks : [
-                    [<Start addBlock={addBlock}/>],
+                    [<Start addBlock={addBlock}/>]
                 ]
             }
         ]
